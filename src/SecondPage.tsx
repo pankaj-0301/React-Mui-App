@@ -118,7 +118,7 @@ const SecondPage: React.FC = () => {
     <Container>
       <Typography variant="h4" gutterBottom>Data Table</Typography>
       <div style={{ height: 400, width: '100%' }}>
-        <DataGrid rows={data} columns={columns} paginationModel={{ pageSize: 5 }} />
+        <DataGrid rows={data} columns={columns} paginationModel={{ page: 0, pageSize: 5 }} />
       </div>
       <Typography variant="h4" gutterBottom>Department List</Typography>
       <DepartmentList />
