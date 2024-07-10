@@ -1,3 +1,4 @@
+// src/SecondPage.tsx
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { DataGrid, GridColDef } from '@mui/x-data-grid';
@@ -22,11 +23,6 @@ interface Post {
   id: number;
   title: string;
   body: string;
-}
-
-interface Department {
-  department: string;
-  sub_departments: string[];
 }
 
 const columns: GridColDef[] = [
@@ -119,22 +115,14 @@ const SecondPage: React.FC = () => {
   }, [navigate]);
 
   return (
-    <Box
-      sx={{
-        background: 'linear-gradient(135deg, #2c3e50 30%, #4ca1af 90%)',
-        minHeight: '100vh',
-        padding: 4,
-      }}
-    >
-      <Container sx={{ backgroundColor: '#ffffff', padding: 4, borderRadius: 2, boxShadow: 3 }}>
-        <Typography variant="h4" gutterBottom>Data Table</Typography>
-        <div style={{ height: 400, width: '100%' }}>
-          <DataGrid rows={data} columns={columns} pageSize={5} />
-        </div>
-        <Typography variant="h4" gutterBottom>Department List</Typography>
-        <DepartmentList />
-      </Container>
-    </Box>
+    <Container>
+      <Typography variant="h4" gutterBottom>Data Table</Typography>
+      <div style={{ height: 400, width: '100%' }}>
+        <DataGrid rows={data} columns={columns} paginationModel={{ pageSize: 5 }} />
+      </div>
+      <Typography variant="h4" gutterBottom>Department List</Typography>
+      <DepartmentList />
+    </Container>
   );
 };
 
