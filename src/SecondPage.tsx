@@ -1,4 +1,3 @@
-// src/SecondPage.tsx
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { DataGrid, GridColDef } from '@mui/x-data-grid';
@@ -12,7 +11,7 @@ import {
   Collapse,
   Checkbox,
   ListItemIcon,
-  Box
+  Box,
 } from '@mui/material';
 import ExpandLessIcon from '@mui/icons-material/ExpandLess';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
@@ -64,7 +63,7 @@ const DepartmentList: React.FC = () => {
   return (
     <List>
       {jsonData.map((department) => (
-        <Box key={department.department}>
+        <Box key={department.department} sx={{ border: '1px solid grey', borderRadius: '4px', mb: 2, bgcolor: 'violet' }}>
           <ListItem button onClick={() => handleToggle(department.department)}>
             <ListItemIcon>
               <Checkbox
@@ -98,6 +97,8 @@ const DepartmentList: React.FC = () => {
 
 const SecondPage: React.FC = () => {
   const [data, setData] = useState<Post[]>([]);
+  const [page, setPage] = useState(0);
+  const [pageSize, setPageSize] = useState(5);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -115,14 +116,31 @@ const SecondPage: React.FC = () => {
   }, [navigate]);
 
   return (
-    <Container>
-      <Typography variant="h4" gutterBottom>Data Table</Typography>
-      <div style={{ height: 400, width: '100%' }}>
-        <DataGrid rows={data} columns={columns} paginationModel={{ page: 0, pageSize: 5 }} />
-      </div>
-      <Typography variant="h4" gutterBottom>Department List</Typography>
-      <DepartmentList />
-    </Container>
+    <Box
+      sx={{
+        background: 'linear-gradient(135deg, #2c3e50 30%, #4ca1af 90%)',
+        minHeight: '100vh',
+        padding: 4,
+      }}
+    >
+      <Container sx={{ backgroundColor: '#ffffff', padding: 4, borderRadius: 2, boxShadow: 3 }}>
+        <Typography variant="h4" gutterBottom>Data Table</Typography>
+        <Box sx={{ height: 400, width: '100%', border: '1px solid grey', borderRadius: '4px', mb: 4, bgcolor: 'lightgreen' }}>
+          <DataGrid 
+            rows={data} 
+            columns={columns} 
+            pageSizeOptions={[5, 10, 20]} 
+            paginationModel={{ page, pageSize }} 
+            onPaginationModelChange={(model) => {
+              setPage(model.page);
+              setPageSize(model.pageSize);
+            }}
+          />
+        </Box>
+        <Typography variant="h4" gutterBottom>Department List</Typography>
+        <DepartmentList />
+      </Container>
+    </Box>
   );
 };
 
