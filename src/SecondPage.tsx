@@ -63,7 +63,7 @@ const DepartmentList: React.FC = () => {
   return (
     <List>
       {jsonData.map((department) => (
-        <Box key={department.department} sx={{ border: '1px solid grey', borderRadius: '4px', mb: 2, bgcolor: 'violet' }}>
+        <Box key={department.department} sx={{ border: '1px solid grey', borderRadius: '4px', mb: 2 }}>
           <ListItem button onClick={() => handleToggle(department.department)}>
             <ListItemIcon>
               <Checkbox
@@ -125,7 +125,7 @@ const SecondPage: React.FC = () => {
     >
       <Container sx={{ backgroundColor: '#ffffff', padding: 4, borderRadius: 2, boxShadow: 3 }}>
         <Typography variant="h4" gutterBottom>Data Table</Typography>
-        <Box sx={{ height: 400, width: '100%', border: '1px solid grey', borderRadius: '4px', mb: 4, bgcolor: 'lightgreen' }}>
+        <Box sx={{ height: 400, width: '100%', border: '1px solid grey', borderRadius: '4px', mb: 4 }}>
           <DataGrid 
             rows={data} 
             columns={columns} 
